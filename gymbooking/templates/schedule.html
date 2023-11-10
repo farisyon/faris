@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <style>
+        body {
+            background-color: #2d3250;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ffffff;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #424769;
+        }
+
+        tr:nth-child(even) {
+            background-color: #676f9d;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #fcb17a;
+        }
+
+        .back-button {
+            text-decoration: none;
+            background-color: #676f9d;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: 2px solid #fcb17a;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gym Schedule</h1>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Gender</th>
+        </tr>
+        <tr>
+            <td>Monday</td>
+            <td>Women</td>
+        </tr>
+        <tr>
+            <td>Tuesday</td>
+            <td>Men</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td>Women</td>
+        </tr>
+        <tr>
+            <td>Thursday</td>
+            <td>Men</td>
+        </tr>
+        <tr>
+            <td>Friday</td>
+            <td>Women</td>
+        </tr>
+        <tr>
+            <td>Saturday</td>
+            <td>Men</td>
+        </tr>
+        <tr>
+            <td>Sunday</td>
+            <td>Women</td>
+        </tr>
+    </table>
+    <a class="back-button" href="{%url 'booking' %}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Booking System</title>
+    <style>
+        body {
+            background-color: #2d3250;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #424769;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+        h1 {
+            font-size: 36px;
+            margin: 20px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            display: block;
+            padding: 15px 30px;
+            background-color: #676f9d;
+            border: 2px solid #676f9d;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        a:hover {
+            background-color: #fcb17a;
+            border: 2px solid #fcb17a;
+        }
+        footer {
+            background-color: #424769;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+        .quote {
+            font-size: 20px;
+            margin: 10px 0; /* Changed the position of the quote */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the KPMB Gym Booking </h1>
+    </header>
+    <center>
+        <a href="{% url 'schedule' %}">Gym Schedule</a>
+        <a href="{% url 'slot' %}">Slot Info</a>
+        <a href="{% url 'userdetail' %}">Register</a>
+        <a href="{% url 'userbooking' %}">Booking</a>
+        <a href="{% url 'bookingdetail' %}">Booking Detail</a>
+        <p class="quote">"Sweat it out, keep it strong."</p> <!-- Changed the quote content -->
+    </center>
+    <footer>
+        &copy; 2023 Gym Booking System
+    </footer>
+</body>
+</html>

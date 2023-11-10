@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Detail</title>
+    <style>
+        body {
+            background-color: #424769;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .booking-detail {
+            background-color: #2d3250;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .form-input {
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 2px solid #676f9d;
+            background-color: transparent;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        .search-button {
+            text-decoration: none;
+            background-color: #676f9d;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: 2px solid #fcb17a;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #676f9d;
+            color: #ffffff;
+            padding: 5px 10px;
+            border: 2px solid #fcb17a;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .booking-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .booking-table th, .booking-table td {
+            border: 1px solid #676f9d;
+            padding: 8px;
+            text-align: left;
+            color: #ffffff;
+        }
+
+        .booking-table th {
+            background-color: #2d3250;
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-detail">
+        <h1>Booking Detail</h1>
+        <a class="back-button" href="{%url 'booking' %}">Back</a>
+        <form action="{% url 'bookingdetail' %}" method="post">
+            {% csrf_token %}
+            <label for="userid" style="color: #ffffff;">Enter User ID to Search:</label>
+            <input type="text" class="form-input" name="userid" required>
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        <div>
+            {% if error_message %}
+                <p style="color: red;">{{ error_message }}</p>
+            {% endif %}
+            {% if user_id %}
+                <h2>Booking Details for User ID: {{ user_id }}</h2>
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Slot ID</th>
+                            <th>Shift</th>
+                            <th>Date</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in user_booking %}
+                            <tr>
+                                <td>{{ booking.slotid.slotid }}</td>
+                                <td>{{ booking.slotid.shift }}</td>
+                                <td>{{ booking.date }}</td>
+                                <td>{{ booking.notes }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ booking.date }}</td>
+                                <td>{{ booking.notes }}</td>
+                                <td>
+                                    <form action="{% url 'update_date' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                                        <input type="date" name="new_date" required>
+                                        <button type="submit">Update Date</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{% url 'delete_note' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                                        <button type="submit">Delete Note</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

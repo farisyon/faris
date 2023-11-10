@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Booking Page</title>
+    <style>
+        body {
+            background-color: #424769;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .booking-form {
+            background-color: #2d3250;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .form-input {
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 2px solid #676f9d;
+            background-color: transparent;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        .select-label {
+            color: #ffffff;
+        }
+
+        .select-input {
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            background-color: #2d3250;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        .text-area {
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            background-color: #2d3250;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        .book-button {
+            text-decoration: none;
+            background-color: #676f9d;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: 2px solid #fcb17a;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #676f9d;
+            color: #ffffff;
+            padding: 5px 10px;
+            border: 2px solid #fcb17a;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'booking' %}" class="back-button">Back</a>
+    <div class="booking-form">
+        <h1>Booking</h1>
+        <a class="back-button" href="{%url 'booking' %}">Back</a>
+        <form action="{% url 'userbooking' %}" method="post">
+            {% csrf_token %}
+            <label class="select-label" for="userid">User ID:</label>
+            <input type="text" class="form-input" name="userid" ><br>
+
+            <select class="select-input" id="slotid" name="slotid" required>
+                <option value="slot1">Slot 1</option>
+                <option value="slot2">Slot 2</option>
+                <option value="slot3">Slot 3</option>
+                <option value="slot4">Slot 4</option>
+            </select>
+
+            <label class="select-label" for="date">Date:</label>
+            <input type="date" class="form-input" id="date" name="date" required><br>
+
+            <label class="select-label" for="notes">Notes (optional):</label>
+            <textarea class="text-area" id="notes" name="notes" rows="4" cols="50"></textarea><br>
+
+            <button type="submit" class="book-button">Book</button>
+        </form>
+    </div>
+</body>
+</html>
